@@ -1,0 +1,12 @@
+# ==============================================================================
+# Hosted Sites
+# ==============================================================================
+
+hosted_sites:
+  example.com:
+    site_hosts:
+      - example.com
+    local_path: ~/dev/example.com
+    cache:
+      enabled: false
+      duration: 30s

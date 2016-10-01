@@ -1,0 +1,19 @@
+# ==============================================================================
+# Hosted Sites
+# ==============================================================================
+
+hosted_sites:
+  goggleworks.dev:
+    site_hosts:
+      - goggleworks.dev
+    local_path: ~/dev/goggleworks.dev
+    cache:
+      enabled: false
+      duration: 30s
+  edgecase.dev:
+    site_hosts:
+      - edgecase.dev
+    local_path: ~/dev/edgecase.dev
+    cache:
+      enabled: false
+      duration: 30s
