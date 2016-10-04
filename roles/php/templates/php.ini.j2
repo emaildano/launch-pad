@@ -16,6 +16,9 @@ upload_max_filesize = {{ php_upload_max_filesize }}
 expose_php = Off
 date.timezone = {{ php_default_timezone }}
 
+[mysqlnd]
+mysqlnd.collect_memory_statistics = {{ php_mysqlnd_collect_memory_statistics }}
+
 [opcache]
 opcache.enable = {{ php_opcache_enable }}
 opcache.enable_cli = {{ php_opcache_enable_cli }}
@@ -24,8 +27,3 @@ opcache.interned_strings_buffer = {{ php_opcache_interned_strings_buffer }}
 opcache.max_accelerated_files = {{ php_opcache_max_accelerated_files }}
 opcache.revalidate_freq = {{ php_opcache_revalidate_freq }}
 opcache.fast_shutdown = {{ php_opcache_fast_shutdown }}
-
-[hhvm]
-hhvm.log.level = Warning
-hhvm.log.always_log_unhandled_exceptions = true
-hhvm.log.runtime_error_reporting_level = 8191

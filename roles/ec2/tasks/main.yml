@@ -1,0 +1,30 @@
+---
+- name: Gather EC2 facts
+  ec2_remote_facts:
+    region: "{{ ec2_region }}"
+  register: ec2
+
+- name: Debug
+  debug:
+    msg: "{{ ec2 }}"
+
+- name: Launch instance
+  tags:
+    - launch
+  ec2:
+    count: 1
+    group: "{{ ec2_security_group }}"
+    keypair: "{{ ec2_keypair }}"
+    image: "{{ ec2_ami }}"
+    instance_tags:
+      Name: "{{ ec2_tag_name }}"
+    instance_type: "{{ ec2_instance_type }}"
+    region: "{{ ec2_region }}"
+    wait: true
+    vpc_subnet_id: "{{ ec2_subnet }}"
+    volumes:
+      - volume_size: "{{ ec2_volume_size }}"
+        volume_type: "{{ ec2_volume_type }}"
+        delete_on_termination: true
+        device_name: "{{ ec2_device_name }}"
+  register: ec2

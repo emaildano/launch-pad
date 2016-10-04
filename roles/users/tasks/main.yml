@@ -17,7 +17,7 @@
         state=present
         shell=/bin/bash
         update_password=always
-  with_items: users
+  with_items: "{{ users }}"
 
 - name: Add web user sudoers items for services
   template:

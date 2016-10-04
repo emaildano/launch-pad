@@ -6,7 +6,7 @@
 - name: Create WordPress configuration for Nginx
   template: src="wordpress-site.conf.j2"
             dest="/etc/nginx/sites-available/{{ item.key }}.conf"
-  with_dict: hosted_sites
+  with_dict: "{{ hosted_sites }}"
   notify: reload nginx
 
 - name: Enable WordPress site
@@ -15,5 +15,5 @@
         owner=root
         group=root
         state=link
-  with_dict: hosted_sites
+  with_dict: "{{ hosted_sites }}"
   notify: reload nginx

@@ -7,7 +7,7 @@
 - name: Inventory folders
   stat:
     path: "{{ www_root }}/{{ item.key }}/web"
-  with_dict: hosted_sites
+  with_dict: "{{ hosted_sites }}"
   register: web_root
 
 - name: Create web root
@@ -17,7 +17,7 @@
     group: "{{ web_group }}"
     mode: 0755
     state: directory
-  with_dict: hosted_sites
+  with_dict: "{{ hosted_sites }}"
 
 - name: Create logs folder
   file:
@@ -26,7 +26,7 @@
     group: "{{ web_group }}"
     mode: 0755
     state: directory
-  with_dict: hosted_sites
+  with_dict: "{{ hosted_sites }}"
 
 - name: Create web folder
   file:
@@ -35,4 +35,6 @@
     group: "{{ web_group }}"
     mode: 0755
     state: directory
-  with_dict: hosted_sites
+  with_dict: "{{ hosted_sites }}"
+
+- git: repo=ssh://git@github.com/.git dest=/home/mylogin/hello
