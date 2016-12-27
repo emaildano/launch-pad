@@ -7,21 +7,16 @@
     msg: "Your Ansible version is too old. Please update from {{ ansible_version.full | default('< 1.6') }} to {{ minimum_ansible_version }} or above."
 
 - name: Installing Packages
-  apt:
+  yum:
     name: "{{ item }}"
     state: latest
     update_cache: yes
   with_items:
-    - python-software-properties
     - python-setuptools
-    - python-mysqldb
-    - python-dev
     - python-pycurl
-    - build-essential
-    - software-properties-common
+    - "@Development tools"
     - curl
     - git-core
-    - awscli
 
 - name: Install pip Packages
   easy_install:
@@ -29,9 +24,12 @@
     state: latest
   with_items:
     - pip
+    - awscli
 
 - name: Upgrade Packages
-  apt: upgrade=dist
+  yum:
+    name: '*'
+    state: latest
 
 - name: Validate timezone variable
   stat: path=/usr/share/zoneinfo/{{ default_timezone }}

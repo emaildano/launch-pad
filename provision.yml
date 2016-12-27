@@ -1,15 +1,6 @@
 ---
 - name: Provision
-  hosts: development
+  hosts: tag_Name_Ansible
   become: yes
   roles:
     - { role: common, tags: [common] }
-    - { role: ferm, tags: [ferm] }
-    - { role: sshd, tags: [sshd] }
-    - { role: php, tags: [php] }
-    - { role: nginx, tags: [nginx] }
-    - { role: memcached, tags: [memcached] }
-    - { role: composer, tags: [composer] }
-    - { role: wp-cli, tags: [wp-cli] }
-    - { role: users, tags: [users] }
-    - { role: hosted-sites, tags: [hosted-sites] }
