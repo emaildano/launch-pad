@@ -8,6 +8,6 @@
     - { role: sshd, tags: [sshd] }
     - { role: nginx, tags: [nginx] }
     # - { role: composer, tags: [composer] }
-    - { role: wp-cli, tags: [wp-cli] }
+    # - { role: wp-cli, tags: [wp-cli] }
     # - { role: users, tags: [users] }
     # - { role: hosted-sites, tags: [hosted-sites] }
