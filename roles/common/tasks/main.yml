@@ -31,19 +31,11 @@
     name: '*'
     state: latest
 
-- name: Validate timezone variable
-  stat: path=/usr/share/zoneinfo/{{ default_timezone }}
-  register: timezone_path
-  changed_when: false
+- name: Check current timezone
+  shell: awk -F\" '{ print $2}' /etc/sysconfig/clock
+  register: current_zone
+  changed_when: False
 
-- name: Explain timezone error
-  fail: msg="{{ default_timezone }} is not a valid timezone. For a list of valid timezones, check https://php.net/manual/en/timezones.php"
-  when: not timezone_path.stat.exists
-
-- name: Get current timezone
-  command: cat /etc/timezone
-  register: current_timezone
-  changed_when: false
-
-- name: Set timezone
-  command: timedatectl set-timezone {{ default_timezone }}
+- name: Set UTC timezone
+  file: src=/usr/share/zoneinfo/"{{ default_timezone }}"  dest=/etc/localtime state=link force=yes
+  when: current_zone.stdout != "{{ default_timezone }}"
