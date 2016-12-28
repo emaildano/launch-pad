@@ -54,8 +54,3 @@
   args:
     tags:
       Name: "{{ ec2_tag_name }}"
-
-- name: Add Key
-  authorized_key:
-    user: ec2-user
-    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
