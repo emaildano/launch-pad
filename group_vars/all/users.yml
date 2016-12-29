@@ -3,7 +3,7 @@
 # ==============================================================================
 
 web_user: web
-web_group: www-data
+web_group: nginx
 
 users:
   - name: "{{ web_user }}"

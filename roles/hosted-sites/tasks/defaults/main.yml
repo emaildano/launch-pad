@@ -3,17 +3,10 @@
 # ==============================================================================
 
 hosted_sites:
-  goggleworks.dev:
+  example.com:
     site_hosts:
-      - goggleworks.dev
-    local_path: ~/dev/goggleworks.dev
-    cache:
-      enabled: false
-      duration: 30s
-  edgecase.dev:
-    site_hosts:
-      - edgecase.dev
-    local_path: ~/dev/edgecase.dev
+      - example.com
+    local_path: ~/dev/example.com
     cache:
       enabled: false
       duration: 30s

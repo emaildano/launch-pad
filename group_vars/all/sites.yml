@@ -3,17 +3,10 @@
 # ==============================================================================
 
 hosted_sites:
-  example.com:
+  exit.j2made.com:
     site_hosts:
-      - example.com
-    local_path: ~/dev/example.com
-    cache:
-      enabled: false
-      duration: 30s
-  shifter.j2made.com:
-    site_hosts:
-      - shifter.j2made.com
-    local_path: ~/dev/shifter.j2made.com
+      - exit.j2made.com
+    local_path: ~/dev/exit.j2made.com
     cache:
       enabled: false
       duration: 30s

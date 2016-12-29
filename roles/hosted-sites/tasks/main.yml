@@ -36,5 +36,3 @@
     mode: 0755
     state: directory
   with_dict: "{{ hosted_sites }}"
-
-- git: repo=ssh://git@github.com/.git dest=/home/mylogin/hello

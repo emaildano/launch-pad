@@ -18,35 +18,6 @@ server {
 
   include wordpress.conf;
 
-  location ~ \.(hh|php)$ {
-    fastcgi_intercept_errors on;
-    error_page 502 = @fallback;
-
-    try_files $uri =404;
-
-    fastcgi_split_path_info ^(.+\.php)(/.+)$;
-
-    include         fastcgi_params;
-    fastcgi_index   index.php;
-    fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    fastcgi_param   SERVER_NAME $host;
-    fastcgi_pass    unix:/var/run/hhvm/hhvm.sock;
-    fastcgi_keep_conn on;
-  }
-
-  location @fallback {
-
-    try_files $uri =404;
-
-    fastcgi_split_path_info ^(.+\.php)(/.+)$;
-
-    include         fastcgi_params;
-    fastcgi_index   index.php;
-    fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    fastcgi_param   SERVER_NAME $host;
-    fastcgi_pass    unix:/var/run/php5-fpm.sock;
-  }
-
   # Cache
   {% if item.value.cache is defined and item.value.cache.enabled | default(false) -%}
     add_header Fastcgi-Cache $upstream_cache_status;
