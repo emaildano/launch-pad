@@ -1,0 +1,8 @@
+---
+- name: Install PHP 7
+  yum:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - php70
