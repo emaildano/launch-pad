@@ -1,8 +1,8 @@
 ---
 - name: Create security group
   ec2_group:
-    name: "{{ ec2_security_group }}"
-    description: Default Web Server
+    name: "{{ ec2_sg }}"
+    description: "{{ ec2_sg_description }}"
     region: "{{ ec2_region }}"
     vpc_id: "{{ ec2_vpc_id }}"
     rules:
@@ -25,7 +25,7 @@
     instance_type: "{{ ec2_instance_type }}"
     image: "{{ ec2_image }}"
     wait: yes
-    group: "{{ ec2_security_group }}"
+    group: "{{ ec2_sg }}"
     count: "{{ ec2_count }}"
     vpc_subnet_id: "{{ ec2_subnet }}"
     assign_public_ip: yes

@@ -1,13 +1,14 @@
 ---
 - name: Provision
   hosts: tag_Name_Ansible
+  user: ec2-user
   gather_facts: True
   become: yes
   roles:
     - { role: common, tags: [common] }
-    - { role: php, tags: [php] }
+    # - { role: php, tags: [php] }
     # - { role: sshd, tags: [sshd] }
-    - { role: nginx, tags: [nginx] }
+    # - { role: nginx, tags: [nginx] }
     # - { role: composer, tags: [composer] }
     # - { role: wp-cli, tags: [wp-cli] }
     # - { role: users, tags: [users] }
