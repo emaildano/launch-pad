@@ -7,9 +7,9 @@
   roles:
     - { role: common, tags: [common] }
     - { role: sshd, tags: [sshd] }
+    - { role: nginx, tags: [nginx] }
     # - { role: php, tags: [php] }
-    # - { role: nginx, tags: [nginx] }
+    - { role: users, tags: [users] }
     # - { role: composer, tags: [composer] }
     # - { role: wp-cli, tags: [wp-cli] }
-    # - { role: users, tags: [users] }
-    # - { role: hosted-sites, tags: [hosted-sites] }
+    - { role: hosted-sites, tags: [hosted-sites] }

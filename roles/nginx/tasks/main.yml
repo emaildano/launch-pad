@@ -14,27 +14,27 @@
 - name: Move h5bp configs
   command: creates=/etc/nginx/h5bp/ cp -R /etc/nginx/h5bp-server-configs/h5bp /etc/nginx/h5bp
 
-# - name: Create nginx.conf
-#   template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
-#   notify: reload nginx
+- name: Create nginx.conf
+  template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+  notify: reload nginx
 
-# - name: Create server block directories
-#   file:
-#     path: "{{ item }}"
-#     state: directory
-#     mode: 0755
-#   with_items:
-#     - /etc/nginx/sites-enabled
-#     - /etc/nginx/sites-available
-#
-# - name: Disable default server
-#   file: path=/etc/nginx/sites-enabled/default state=absent
-#   notify: reload nginx
-#   when: disable_nginx_default | default(true)
-#
-# - name: Enable better default site to drop unknown requests
-#   command: creates=/etc/nginx/sites-enabled/no-default.conf cp /etc/nginx/h5bp-server-configs/sites-available/no-default /etc/nginx/sites-enabled/no-default.conf
-#   notify: reload nginx
-#
-# - name: Create base WordPress config
-#   template: src=wordpress.conf.j2 dest=/etc/nginx/wordpress.conf
+- name: Create server block directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - /etc/nginx/sites-enabled
+    - /etc/nginx/sites-available
+
+- name: Disable default server
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  notify: reload nginx
+  when: disable_nginx_default | default(true)
+
+- name: Enable better default site to drop unknown requests
+  command: creates=/etc/nginx/sites-enabled/no-default.conf cp /etc/nginx/h5bp-server-configs/sites-available/no-default /etc/nginx/sites-enabled/no-default.conf
+  notify: reload nginx
+
+- name: Create base WordPress config
+  template: src=wordpress.conf.j2 dest=/etc/nginx/wordpress.conf

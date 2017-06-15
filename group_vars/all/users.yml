@@ -2,7 +2,7 @@
 # Users
 # ==============================================================================
 
-web_user: web
+web_user: amimoto-user
 web_group: nginx
 
 users:
