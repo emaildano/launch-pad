@@ -2,8 +2,12 @@
 # Users
 # ==============================================================================
 
-web_user: amimoto-user
+web_user: amimoto
 web_group: nginx
+
+web_sudoers:
+  - "/usr/sbin/service hhvm *"
+  - "/usr/sbin/service php5-fpm *"
 
 users:
   - name: "{{ web_user }}"

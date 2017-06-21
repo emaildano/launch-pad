@@ -4,7 +4,3 @@
 
 www_root: /srv/www
 apt_cache_valid_time: 86400
-
-web_sudoers:
-  - "/usr/sbin/service hhvm *"
-  - "/usr/sbin/service php5-fpm *"

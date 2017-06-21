@@ -1,5 +1,5 @@
 ---
-- name: AWS
+- name: Launch Ec2 Instances
   hosts: localhost
   connection: local
   gather_facts: True
