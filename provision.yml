@@ -9,23 +9,7 @@
     - { role: sshd, tags: [sshd] }
     - { role: php, tags: [php] }
     - { role: nginx, tags: [nginx] }
-    # - { role: composer, tags: [composer] }
-    # - { role: wp-cli, tags: [wp-cli] }
+    - { role: composer, tags: [composer] }
+    - { role: wp-cli, tags: [wp-cli] }
     - { role: users, tags: [users] }
     - { role: hosted-sites, tags: [hosted-sites] }
-
-# - name: Setup Hosted Sites
-#   hosts: tag_Name_AmimotoAnsible
-#   user: ec2-user
-#   gather_facts: True
-#   become: yes
-#
-#   vars_files:
-#     - roles/nginx/defaults/main.yml
-#
-#   handlers:
-#     - include: roles/common/handlers/main.yml
-#
-#   roles:
-#     - { role: users, tags: [users] }
-#     - { role: hosted-sites, tags: [hosted-sites] }
