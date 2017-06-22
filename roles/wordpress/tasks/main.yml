@@ -1,0 +1,65 @@
+---
+- include: nginx.yml
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "group_vars/all/sites.yml"
+
+- name: Inventory folders
+  stat:
+    path: "{{ www_root }}/{{ item.key }}/web"
+  with_dict: "{{ hosted_sites }}"
+  register: web_root
+
+- name: Create web root
+  file:
+    path: "{{ www_root }}"
+    owner: "{{ web_user }}"
+    group: "{{ web_group }}"
+    mode: 0755
+    state: directory
+  with_dict: "{{ hosted_sites }}"
+
+- name: Create logs folder
+  file:
+    path: "{{ www_root }}/{{ item.key }}/logs"
+    owner: "{{ web_user }}"
+    group: "{{ web_group }}"
+    mode: 0755
+    state: directory
+  with_dict: "{{ hosted_sites }}"
+
+- name: Create web folder
+  file:
+    path: "{{ www_root }}/{{ item.key }}/web"
+    owner: "{{ web_user }}"
+    group: "{{ web_group }}"
+    mode: 0755
+    state: directory
+  with_dict: "{{ hosted_sites }}"
+
+# - name: Download WordPress
+#   vars:
+#     wp_version: 4.8
+#     wp_sha256sum: 39210d593700dc26c58a53b38172be63ea3da67020d80bb2cf34b396b732dd4d
+#   get_url:
+#     url: "https://wordpress.org/wordpress-{{ wp_version }}.tar.gz"
+#     dest: "{{ www_root }}/{{ item.key }}/web/wordpress-{{ wp_version }}.tar.gz"
+#     sha256sum: "{{ wp_sha256sum }}"
+#   with_dict: "{{ hosted_sites }}"
+
+# - name: Grab AMIMOTO Composer
+#   git:
+#     repo: "https://github.com/amimoto-ami/amimoto-composer.git"
+#     dest: "{{ www_root }}/{{ item.key }}/amimoto-composer/"
+#     force: yes
+#   with_dict: "{{ hosted_sites }}"
+
+- name: composer create-project
+  composer:
+    command: create-project
+    working_dir: "{{ www_root }}/{{ item.key }}/amimoto-composer/"
+  with_dict: "{{ hosted_sites }}"
+
+# - name: Run AMIMOTO Composer
+#   raw: composer create-project -d "{{ www_root }}/{{ item.key }}/amimoto-composer/"
+#   with_dict: "{{ hosted_sites }}"

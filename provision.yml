@@ -12,4 +12,4 @@
     - { role: composer, tags: [composer] }
     - { role: wp-cli, tags: [wp-cli] }
     - { role: users, tags: [users] }
-    - { role: hosted-sites, tags: [hosted-sites] }
+    - { role: wordpress, tags: [wordpress] }
