@@ -1,6 +1,6 @@
 ---
 - name: Provision
-  hosts: tag_Name_AmimotoAnsible
+  hosts: tag_Name_amimoto
   user: ec2-user
   gather_facts: True
   become: yes
